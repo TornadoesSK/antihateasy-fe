@@ -4,7 +4,8 @@
 	"description": "React Mobx Typescript Sample",
 	"scripts": {
 		"build": "babel-node ./node_modules/webpack/bin/webpack --mode production",
-		"start": "webpack-dev-server --hot --mode development"
+		"start": "webpack-dev-server --hot --mode development",
+		"generate": "openapi --input http://127.0.0.1:5000/apispec_1.json --output ./src/api -c fetch --useOptions"
 	},
 	"main": "index.js",
 	"dependencies": {
@@ -41,6 +42,8 @@
 		"eslint-plugin-import": "^2.16.0",
 		"eslint-plugin-jsx-a11y": "^6.2.1",
 		"eslint-plugin-react": "^7.12.4",
+		"openapi-typescript": "^5.2.0",
+		"openapi-typescript-codegen": "^0.21.0",
 		"path": "^0.12.7",
 		"postcss": "^8.4.12",
 		"tailwindcss": "^3.0.24",

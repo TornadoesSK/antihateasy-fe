@@ -5,6 +5,8 @@ import {
   observable,
   reaction,
 } from "mobx";
+import { DefaultService } from "./api";
+import { QueryState } from "./QueryState";
 
 export default class TestComponentState {
   @observable observableFoo = 0;
@@ -21,6 +23,20 @@ export default class TestComponentState {
       },
       { fireImmediately: true }
     );
+  }
+
+  getTest = new QueryState({
+    request: DefaultService.getApiTest,
+    variables: { name: "Dano" },
+  });
+
+  postUser = new QueryState({
+    request: DefaultService.postApiUser,
+    variables: { body: { name: "Miso", email: "miso@noob" } },
+  });
+
+  get queryResult() {
+    return this.getTest.data;
   }
 
   get getterExample() {

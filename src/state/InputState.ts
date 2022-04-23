@@ -34,6 +34,7 @@ export class InputState extends State<{}> {
         message: this.error,
       };
     } else {
+      this.error = null;
       return {
         error: false,
         message: undefined,

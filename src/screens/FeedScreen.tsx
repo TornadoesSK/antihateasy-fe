@@ -1,14 +1,14 @@
 import { observer } from "mobx-react-lite";
-import { useStore } from "./State";
-import { useAppState } from "./AppState";
+import { useStore } from "../state/State";
+import { useAppState } from "../AppState";
 import { action, computed } from "mobx";
-import { AppState } from "./AppState";
-import { State } from "./State";
-import { QueryState } from "./QueryState";
-import { DefaultService } from "./api";
-import { InputState } from "./InputState";
+import { AppState } from "../AppState";
+import { State } from "../state/State";
+import { QueryState } from "../state/QueryState";
+import { DefaultService } from "../api";
+import { InputState } from "../state/InputState";
 
-export default class FeedState extends State<{ appState: AppState }> {
+export default class FeedScreenState extends State<{ appState: AppState }> {
   @action.bound handleLogoutClick() {
     this.args.appState.user = null;
   }
@@ -36,9 +36,9 @@ export default class FeedState extends State<{ appState: AppState }> {
   }
 }
 
-export const Feed = observer(() => {
+export const FeedScreen = observer(() => {
   const appState = useAppState();
-  const state = useStore(FeedState, { appState });
+  const state = useStore(FeedScreenState, { appState });
 
   return (
     <>

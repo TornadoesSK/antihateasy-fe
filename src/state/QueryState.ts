@@ -1,5 +1,5 @@
 import { action, observable, reaction } from "mobx";
-import { ApiError, CancelablePromise } from "./api";
+import { ApiError, CancelablePromise } from "../api";
 import { State } from "./State";
 
 type QueryStateArgs<Options, Result> = {

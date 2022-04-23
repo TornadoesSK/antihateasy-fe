@@ -1,15 +1,18 @@
 import { observer } from "mobx-react";
 import { AppState, appStateContext } from "./AppState";
-import { LoginScreen } from "./LoginScreen";
-import { useStore } from "./State";
-import { Feed } from "./Feed";
+import { LoginScreen } from "./screens/LoginScreen";
+import { useStore } from "./state/State";
+import { FeedScreen } from "./screens/FeedScreen";
+import { Global } from "@emotion/react";
+import { ResetStyle } from "./styles/ResetStyle";
 
 export const App = observer(() => {
   const appState = useStore(AppState);
   return (
     <>
       <appStateContext.Provider value={appState}>
-        {appState.user ? <Feed /> : <LoginScreen />}
+        <Global styles={ResetStyle()} />
+        {appState.user ? <FeedScreen /> : <LoginScreen />}
       </appStateContext.Provider>
     </>
   );

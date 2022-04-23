@@ -8,6 +8,38 @@ import { request as __request } from '../core/request';
 export class DefaultService {
 
     /**
+     * Addes new message to database.
+     * @returns any new user added successfully
+     * @throws ApiError
+     */
+    public static postApiMessage({
+        body,
+    }: {
+        body: any,
+    }): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/message',
+            body: body,
+            errors: {
+                422: `missing body`,
+            },
+        });
+    }
+
+    /**
+     * Returns all messages.
+     * @returns any List of all messages
+     * @throws ApiError
+     */
+    public static getApiMessageAll(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/message/all',
+        });
+    }
+
+    /**
      * Example endpoint returning a list of colors by palette
      * This is using docstrings for specifications.<br/>
      * @returns any A list of colors (may be filtered by palette)
@@ -43,7 +75,7 @@ export class DefaultService {
             body: body,
             errors: {
                 400: `user already exists`,
-                401: `missing body`,
+                422: `missing body`,
             },
         });
     }
@@ -55,15 +87,15 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getApiUser({
-        usernameOfUser,
+        name,
     }: {
-        usernameOfUser?: string,
+        name?: string,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/user/{name}',
             path: {
-                'username of user': usernameOfUser,
+                'name': name,
             },
             errors: {
                 404: `No user with given username found`,

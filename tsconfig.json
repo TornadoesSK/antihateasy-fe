@@ -6,6 +6,7 @@
 			"dom.iterable",
 			"esnext"
 		],
+		"types": ["node", "@emotion/react/types/css-prop"],
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
@@ -16,6 +17,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "react-jsx",
+		"jsxImportSource": "@emotion/react",
 		"experimentalDecorators": true
 	},
 	"include": [

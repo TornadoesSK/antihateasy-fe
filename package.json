@@ -9,14 +9,14 @@
 	},
 	"main": "index.js",
 	"dependencies": {
-		"flowbite": "^1.4.2",
+		"@emotion/babel-plugin": "^11.9.2",
+		"@emotion/babel-preset-css-prop": "^11.2.0",
+		"@emotion/react": "^11.9.0",
 		"html-webpack-plugin": "^5.5.0",
-		"mini-css-extract-plugin": "^2.6.0",
 		"mobx": "^5.9.0",
 		"mobx-react": "^6.3.1",
 		"mobx-react-lite": "^1.2.0",
 		"mobx-utils": "^5.1.0",
-		"postcss-loader": "^6.2.1",
 		"react": "^16.8.2",
 		"react-dom": "^16.8.2",
 		"typescript": "^4.4.2",
@@ -37,7 +37,6 @@
 		"@types/react-dom": "^16.9.14",
 		"autoprefixer": "^10.4.4",
 		"babel-loader": "^8.0.5",
-		"css-loader": "^6.7.1",
 		"eslint": "^8.14.0",
 		"eslint-plugin-import": "^2.16.0",
 		"eslint-plugin-jsx-a11y": "^6.2.1",
@@ -45,8 +44,6 @@
 		"openapi-typescript": "^5.2.0",
 		"openapi-typescript-codegen": "^0.21.0",
 		"path": "^0.12.7",
-		"postcss": "^8.4.12",
-		"tailwindcss": "^3.0.24",
 		"ts-loader": "8.2.0"
 	}
 }

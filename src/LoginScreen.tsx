@@ -5,6 +5,7 @@ import { AppState, useAppState } from "./AppState";
 import { InputState } from "./InputState";
 import { QueryState } from "./QueryState";
 import { State, useStore } from "./State";
+import { ContainerStyle } from "./styles/ContainerStyle";
 
 type LoginScreenStateArgs = { appState: AppState };
 class LoginScreenState extends State<LoginScreenStateArgs> {
@@ -47,7 +48,7 @@ export const LoginScreen = observer(() => {
   const state = useStore(LoginScreenState, { appState });
 
   return (
-    <div className="flex h-screen flex-col justify-center items-center">
+    <div css={[ContainerStyle({ direction: "column" })]}>
       <span>username</span>
       <span>{state.input.error}</span>
       <span>{state.loginQuery.error}</span>

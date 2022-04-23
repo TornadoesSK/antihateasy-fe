@@ -1,7 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const fs = require("fs");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -21,10 +19,6 @@ module.exports = {
         exclude: /node_modules/,
         use: ["ts-loader"],
       },
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      },
     ],
   },
   resolve: {
@@ -36,7 +30,6 @@ module.exports = {
     filename: "bundle.js",
   },
   plugins: [
-    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
     }),

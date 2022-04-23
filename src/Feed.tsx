@@ -49,29 +49,18 @@ export const Feed = observer(() => {
       >
         Log out
       </button>
+      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Hello {appState.user}
+      </h5>
       <div className="flex flex-col items-center">
         <span>Create a new post</span>
         <input type="text" {...state.input.props} />
         <button onClick={state.handleCreatePostClick}>Send</button>
       </div>
-      <a
-        href="#"
-        className="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-      >
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Hello {appState.user}
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In temporibus
-          at consectetur optio laborum voluptatem rem tenetur sunt obcaecati
-          minima sequi laudantium corporis facere, culpa quas, eligendi
-          aspernatur quod nisi?
-        </p>
-      </a>
-      {state.messages.map((message: any) => (
-        <div>
-          <span>{message.user_id}</span>
-          <span>{message.text}</span>
+      {state.messages.map((message: any, idx: any) => (
+        <div key={idx} className="flex flex-col pb-5">
+          <span>User: {message.user_id}</span>
+          <span>Text: {message.text}</span>
         </div>
       ))}
     </>

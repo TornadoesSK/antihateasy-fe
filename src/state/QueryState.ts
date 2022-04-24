@@ -13,7 +13,7 @@ export class QueryState<Options, Result> extends State<
   QueryStateArgs<Options, Result>
 > {
   @observable data: Result | null = null;
-  @observable error: any | null = null;
+  @observable error: string | null = null;
   lastVariables: Options | null = null;
 
   constructor(protected args: QueryStateArgs<Options, Result>) {

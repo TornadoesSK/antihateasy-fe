@@ -16,17 +16,14 @@ import { RoundedStyle } from "../styles/RoundedStyle";
 import { ShadowStyle } from "../styles/ShadowStyle";
 import { SizeStyle } from "../styles/SizeStyle";
 import { TextStyle } from "../styles/TextStyle";
+import { WarningIcon } from "../utils/icons";
+import { truthy } from "../utils/truthy";
+import MainScreenState from "./MainScreen";
 
-class FeedState extends State<{ appState: AppState }> {
-  messageQuery = new QueryState({
-    request: DefaultService.getApiMessageAll,
-    variables: {},
-  });
-
-  @computed get messages() {
-    return this.messageQuery.data ?? [];
-  }
-
+class FeedState extends State<{
+  appState: AppState;
+  mainScreenState: MainScreenState;
+}> {
   @observable allowForcefulPost: string | null = null;
 
   createPostQuery = new QueryState({
@@ -35,7 +32,7 @@ class FeedState extends State<{ appState: AppState }> {
       if (success) {
         this.allowForcefulPost = null;
         this.input.reset();
-        this.messageQuery.refetch();
+        this.args.mainScreenState.messageQuery.refetch();
       } else {
         this.allowForcefulPost = this.input.value;
         this.input.error =
@@ -46,7 +43,7 @@ class FeedState extends State<{ appState: AppState }> {
 
   input = new InputState({});
   @computed get visibleErrors() {
-    return [this.input.error].filter(Boolean) as any[];
+    return [this.input.error].filter(truthy);
   }
 
   @action.bound handleCreatePostClick() {
@@ -62,78 +59,89 @@ class FeedState extends State<{ appState: AppState }> {
   }
 }
 
-export const Feed = observer(() => {
-  const appState = useAppState();
-  const state = useStore(FeedState, { appState });
+export const Feed = observer(
+  ({ mainScreenState }: { mainScreenState: MainScreenState }) => {
+    const appState = useAppState();
+    const state = useStore(FeedState, { appState, mainScreenState });
 
-  return (
-    <>
-      <div
-        css={[
-          ContainerStyle({ direction: "column", alignItems: "flex-start" }),
-          PaddingStyle({ b: 30, h: 40 }),
-        ]}
-      >
-        <div css={[TextStyle(), PaddingStyle({ b: 4 })]}>Create a post</div>
-        <textarea
-          {...state.input.props}
+    return (
+      <>
+        <div
           css={[
-            InputStyle({ error: !!state.visibleErrors.length }),
-            SizeStyle({ wPct: 100 }),
+            ContainerStyle({ direction: "column", alignItems: "flex-start" }),
+            PaddingStyle({ b: 30, h: 40 }),
           ]}
-        />
-
-        <ErrorMessages errors={state.visibleErrors} />
-        <button
-          css={[
-            ButtonStyle({ primary: true }),
-            MarginStyle({ t: 4 }),
-            css`
-              align-self: flex-end;
-            `,
-          ]}
-          onClick={state.handleCreatePostClick}
         >
-          Send
-        </button>
-      </div>
-      <div
-        css={[
-          ItemStyle({ shrink: 1 }),
-          PaddingStyle({ h: 40, b: 20 }),
-          css`
-            overflow-y: auto;
-          `,
-        ]}
-      >
-        {state.messages.map((message, idx) => (
-          <div
+          <div css={[TextStyle(), PaddingStyle({ b: 4 })]}>Create a post</div>
+          <textarea
+            {...state.input.props}
             css={[
+              InputStyle({ error: !!state.visibleErrors.length }),
+              SizeStyle({ wPct: 100 }),
+            ]}
+          />
+
+          <ErrorMessages errors={state.visibleErrors} />
+          <button
+            css={[
+              ButtonStyle({ primary: true }),
+              MarginStyle({ t: 4 }),
               css`
-                position: relative;
+                align-self: flex-end;
               `,
             ]}
+            onClick={state.handleCreatePostClick}
           >
-            <article
-              key={idx}
-              data-testid="tweet"
+            Send
+          </button>
+        </div>
+        <div
+          css={[
+            ItemStyle({ shrink: 1 }),
+            PaddingStyle({ h: 40, b: 20 }),
+            css`
+              overflow-y: auto;
+            `,
+          ]}
+        >
+          {mainScreenState.messages.map((message, idx) => (
+            <div
               css={[
-                ContainerStyle({ direction: "column" }),
-                MarginStyle({ b: 8 }),
-                RoundedStyle({ a: 6 }),
-                PaddingStyle({ v: 12, h: 20 }),
-                ShadowStyle({}),
                 css`
-                  border: 1px solid ${theme[Color.Border]};
+                  position: relative;
                 `,
               ]}
             >
-              <div>User: {message.name}</div>
-              <div lang="">{message.content}</div>
-            </article>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-});
+              <article
+                key={idx}
+                data-testid="tweet"
+                css={[
+                  ContainerStyle({ direction: "column" }),
+                  MarginStyle({ b: 8 }),
+                  RoundedStyle({ a: 6 }),
+                  PaddingStyle({ v: 12, h: 20 }),
+                  ShadowStyle({}),
+                  css`
+                    border: 1px solid ${theme[Color.Border]};
+                  `,
+                ]}
+              >
+                <div
+                  css={[ContainerStyle({ justifyContent: "space-between" })]}
+                >
+                  <span>User: {message.name}</span>
+                  {message.hate && (
+                    <span title="This content may be hateful">
+                      <WarningIcon />
+                    </span>
+                  )}
+                </div>
+                <div lang="">{message.content}</div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }
+);

@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../state/State";
 import { useAppState } from "../AppState";
-import { action, observable } from "mobx";
+import { action, computed, observable } from "mobx";
 import { AppState } from "../AppState";
 import { State } from "../state/State";
 import { ButtonStyle } from "../styles/ButtonStyle";
@@ -13,6 +13,8 @@ import { css } from "@emotion/react";
 import { BackgroundColorStyle, Color } from "../styles/ColorStyle";
 import { Feed } from "./Feed";
 import { Dashboard } from "./Dashboard";
+import { QueryState } from "../state/QueryState";
+import { DefaultService } from "../api";
 
 export default class MainScreenState extends State<{ appState: AppState }> {
   @action.bound handleLogoutClick() {
@@ -23,6 +25,15 @@ export default class MainScreenState extends State<{ appState: AppState }> {
 
   @action.bound handleDashboardClick() {
     this.dashboardActive = !this.dashboardActive;
+  }
+
+  messageQuery = new QueryState({
+    request: DefaultService.getApiMessageAll,
+    variables: {},
+  });
+
+  @computed get messages() {
+    return this.messageQuery.data ?? [];
   }
 }
 
@@ -75,7 +86,11 @@ export const MainScreen = observer(() => {
             </button>
           </div>
         </div>
-        {state.dashboardActive ? <Dashboard /> : <Feed />}
+        {state.dashboardActive ? (
+          <Dashboard mainScreenState={state} />
+        ) : (
+          <Feed mainScreenState={state} />
+        )}
       </div>
     </div>
   );

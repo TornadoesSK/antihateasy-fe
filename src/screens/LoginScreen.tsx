@@ -15,6 +15,7 @@ import { MarginStyle, PaddingStyle } from "../styles/PaddingStyle";
 import { RoundedStyle } from "../styles/RoundedStyle";
 import { ShadowStyle } from "../styles/ShadowStyle";
 import { TextStyle } from "../styles/TextStyle";
+import { truthy } from "../utils/truthy";
 
 type LoginScreenStateArgs = { appState: AppState };
 class LoginScreenState extends State<LoginScreenStateArgs> {
@@ -56,7 +57,7 @@ class LoginScreenState extends State<LoginScreenStateArgs> {
       this.input.error,
       this.loginQuery.error,
       this.registerQuery.error,
-    ].filter(Boolean);
+    ].filter(truthy);
   }
 }
 

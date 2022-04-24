@@ -41,6 +41,7 @@ export class DefaultService {
      */
     public static getApiMessageAll(): CancelablePromise<Array<{
         content: string;
+        hate: boolean;
         name: string;
     }>> {
         return __request(OpenAPI, {

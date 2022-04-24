@@ -35,7 +35,6 @@ export const ResetStyle = () => css`
     box-sizing: border-box; /* 1 */
     border-width: 0; /* 2 */
     border-style: solid; /* 2 */
-    border-color: theme("borderColor.DEFAULT", currentColor); /* 2 */
   }
 
   ::before,
@@ -55,23 +54,10 @@ export const ResetStyle = () => css`
     -webkit-text-size-adjust: 100%; /* 2 */
     -moz-tab-size: 4; /* 3 */
     tab-size: 4; /* 3 */
-    font-family: theme(
-      "fontFamily.sans",
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      "Helvetica Neue",
-      Arial,
-      "Noto Sans",
-      sans-serif,
-      "Apple Color Emoji",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol",
-      "Noto Color Emoji"
-    ); /* 4 */
+    font-family: "Open Sans", "fontFamily.sans", ui-sans-serif, system-ui,
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
   }
 
   /*
@@ -145,17 +131,8 @@ Add the correct font weight in Edge and Safari.
   kbd,
   samp,
   pre {
-    font-family: theme(
-      "fontFamily.mono",
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      "Liberation Mono",
-      "Courier New",
-      monospace
-    ); /* 1 */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
     font-size: 1em; /* 2 */
   }
 
@@ -363,7 +340,7 @@ Prevent resizing textareas horizontally by default.
   input::placeholder,
   textarea::placeholder {
     opacity: 1; /* 1 */
-    color: theme("colors.gray.400", #9ca3af); /* 2 */
+    color: #9ca3af; /* 2 */
   }
 
   /*

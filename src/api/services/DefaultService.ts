@@ -15,8 +15,15 @@ export class DefaultService {
     public static postApiMessage({
         body,
     }: {
-        body: any,
-    }): CancelablePromise<any> {
+        body: {
+            force: boolean;
+            text: string;
+            user_id: number;
+        },
+    }): CancelablePromise<{
+        message: string;
+        success: boolean;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/message',
@@ -32,30 +39,13 @@ export class DefaultService {
      * @returns any List of all messages
      * @throws ApiError
      */
-    public static getApiMessageAll(): CancelablePromise<any> {
+    public static getApiMessageAll(): CancelablePromise<Array<{
+        content: string;
+        name: string;
+    }>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/message/all',
-        });
-    }
-
-    /**
-     * Example endpoint returning a list of colors by palette
-     * This is using docstrings for specifications.<br/>
-     * @returns any A list of colors (may be filtered by palette)
-     * @throws ApiError
-     */
-    public static getApiTest({
-        name,
-    }: {
-        name?: string,
-    }): CancelablePromise<any> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/test/{name}',
-            path: {
-                'name': name,
-            },
         });
     }
 
@@ -68,7 +58,10 @@ export class DefaultService {
         body,
     }: {
         body: any,
-    }): CancelablePromise<any> {
+    }): CancelablePromise<{
+        id: number;
+        username: string;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/user',
@@ -89,8 +82,11 @@ export class DefaultService {
     public static getApiUser({
         name,
     }: {
-        name?: string,
-    }): CancelablePromise<any> {
+        name: string,
+    }): CancelablePromise<{
+        id: number;
+        username: string;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/user/{name}',

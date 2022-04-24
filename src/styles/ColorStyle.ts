@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-// import { transparentize } from "polished";
 
 export const ColorStyle = (color: Color) => {
   return css`
@@ -15,24 +14,36 @@ export const BackgroundColorStyle = (color: Color) => {
 
 export enum Color {
   Primary,
-  PrimaryAlt,
-  PrimaryLight,
-  Primary20,
+  PrimaryDark10,
+  PrimaryLight10,
+  PrimaryLight80,
+  PrimaryLight90,
+  Border,
+  BorderLight40,
+  BorderDark20,
+  BorderDark40,
+  Secondary,
+  Danger,
   White,
-  Base,
-  Muted,
-  Light,
-  White70,
+  White10,
+  White20,
+  Black,
 }
 
-export const theme: Partial<Record<Color, string>> = {
-  [Color.Primary]: "#033F63",
-  [Color.PrimaryAlt]: "#336380",
-  [Color.PrimaryLight]: "#033F63",
-  // [Color.Primary20]: transparentize(0.8, "#033F63"),
-  [Color.Base]: "#F3F3F3",
-  [Color.White]: "#FFFFFF",
-  [Color.Muted]: "#7E7E7E",
-  [Color.Light]: "#0003",
-  // [Color.White70]: transparentize(0.3, "#FFFFFF"),
+export const theme: Record<Color, string> = {
+  [Color.Primary]: "#8D2EA3",
+  [Color.PrimaryDark10]: "#7f2993",
+  [Color.PrimaryLight10]: "#9843ac",
+  [Color.PrimaryLight80]: "#e8d5ed",
+  [Color.PrimaryLight90]: "#f4eaf6",
+  [Color.Secondary]: "#F0C659",
+  [Color.Danger]: "red",
+  [Color.Border]: "#aaaaaa",
+  [Color.BorderLight40]: "#c4c4c4",
+  [Color.BorderDark20]: "#888888",
+  [Color.BorderDark40]: "#666666",
+  [Color.White]: "#ffffff",
+  [Color.White10]: "#e6e6e6",
+  [Color.White20]: "#cccccc",
+  [Color.Black]: "#000000",
 };

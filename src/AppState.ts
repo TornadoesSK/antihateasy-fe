@@ -1,6 +1,5 @@
-import { observable } from "mobx";
+import { action, computed, observable } from "mobx";
 import { createContext, useContext } from "react";
-import { UserState } from "./UserState";
 
 export const appStateContext = createContext<AppState | null>(null);
 
@@ -10,6 +9,26 @@ export const useAppState = () => {
   return appState;
 };
 
+type User = {
+  id: number;
+  username: string;
+};
+
 export class AppState {
-  @observable user: string | null = null;
+  constructor() {
+    const user = localStorage.getItem("user");
+    this._user = user === null ? null : JSON.parse(user);
+  }
+  @observable _user: User | null;
+  @computed get user() {
+    return this._user;
+  }
+  set user(value) {
+    this._user = value;
+    if (value) {
+      localStorage.setItem("user", JSON.stringify(value));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }
 }

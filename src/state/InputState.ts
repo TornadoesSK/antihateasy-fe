@@ -19,7 +19,11 @@ export class InputState extends State<{}> {
     this.value = null;
   };
 
-  @action.bound handleChange = (props: ChangeEvent<HTMLInputElement>) => {
+  @action.bound handleChange = (
+    props: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    console.log(props.target.value);
+
     this.value = props.target.value || null;
   };
 

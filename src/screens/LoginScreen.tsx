@@ -81,7 +81,7 @@ export const LoginScreen = observer(() => {
         css={[
           ContainerStyle({ direction: "column", alignItems: "center" }),
           BackgroundColorStyle(Color.PrimaryLight80),
-          PaddingStyle({ a: 120 }),
+          PaddingStyle({ t: 100, h: 90, b: 70 }),
           RoundedStyle({ a: 10 }),
           ShadowStyle({ box: true }),
         ]}

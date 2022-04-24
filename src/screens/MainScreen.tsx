@@ -59,7 +59,7 @@ export const MainScreen = observer(() => {
               justifyContent: "space-between",
               alignItems: "flex-end",
             }),
-            PaddingStyle({ t: 16, b: 16 }),
+            PaddingStyle({ t: 16, b: 24 }),
             PaddingStyle({ h: 40 }),
           ]}
         >

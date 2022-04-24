@@ -37,8 +37,13 @@ export const Dashboard = observer(
   ({ mainScreenState }: { mainScreenState: MainScreenState }) => {
     const state = useStore(DashboardState, { mainScreenState });
     return (
-      <div css={[PaddingStyle({ h: 40, v: 40 })]}>
-        <h1 css={[TextStyle({ veryLarge: true }), PaddingStyle({ b: 8 })]}>
+      <div css={[PaddingStyle({ h: 40 })]}>
+        <h1
+          css={[
+            TextStyle({ veryLarge: true, medium: true }),
+            PaddingStyle({ b: 8 }),
+          ]}
+        >
           Dashboard
         </h1>
         <h2 css={[TextStyle(), PaddingStyle({ b: 40 })]}>

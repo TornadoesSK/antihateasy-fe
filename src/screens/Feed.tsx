@@ -8,7 +8,7 @@ import { InputState } from "../state/InputState";
 import { QueryState } from "../state/QueryState";
 import { State, useStore } from "../state/State";
 import { ButtonStyle } from "../styles/ButtonStyle";
-import { Color, theme } from "../styles/ColorStyle";
+import { BackgroundColorStyle, Color, theme } from "../styles/ColorStyle";
 import { ContainerStyle, ItemStyle } from "../styles/ContainerStyle";
 import { InputStyle } from "../styles/InputStyle";
 import { MarginStyle, PaddingStyle } from "../styles/PaddingStyle";
@@ -116,27 +116,43 @@ export const Feed = observer(
                 key={idx}
                 data-testid="tweet"
                 css={[
-                  ContainerStyle({ direction: "column" }),
+                  ContainerStyle({}),
                   MarginStyle({ b: 8 }),
                   RoundedStyle({ a: 6 }),
-                  PaddingStyle({ v: 12, h: 20 }),
+                  PaddingStyle({ v: 12, r: 20, l: 12 }),
                   ShadowStyle({}),
                   css`
                     border: 1px solid ${theme[Color.Border]};
                   `,
                 ]}
               >
-                <div
-                  css={[ContainerStyle({ justifyContent: "space-between" })]}
-                >
-                  <span>User: {message.name}</span>
-                  {message.hate && (
-                    <span title="This content may be hateful">
-                      <WarningIcon />
+                <img
+                  css={[
+                    RoundedStyle({ aPct: 100 }),
+                    SizeStyle({ a: 32 }),
+                    BackgroundColorStyle(Color.White),
+                    MarginStyle({ r: 12 }),
+                  ]}
+                  src={`img/person${(message.name.charCodeAt(0) % 5) + 1}.jpg`}
+                />
+                <div css={[ItemStyle({ grow: 1 })]}>
+                  <div
+                    css={[
+                      ContainerStyle({ justifyContent: "space-between" }),
+                      PaddingStyle({ b: 10 }),
+                    ]}
+                  >
+                    <span css={[TextStyle({ medium: true })]}>
+                      {message.name}
                     </span>
-                  )}
+                    {message.hate && (
+                      <span title="This content may be hateful">
+                        <WarningIcon />
+                      </span>
+                    )}
+                  </div>
+                  <div lang="">{message.content}</div>
                 </div>
-                <div lang="">{message.content}</div>
               </article>
             </div>
           ))}

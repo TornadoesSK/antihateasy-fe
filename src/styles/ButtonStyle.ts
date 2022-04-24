@@ -11,7 +11,7 @@ export const ButtonStyle = ({
   small,
 }: { primary?: boolean; small?: boolean } = {}) => [
   PaddingStyle({ v: 10, h: 30 }),
-  small && PaddingStyle({ v: 6, h: 16 }),
+  small && PaddingStyle({ v: 6, h: 20 }),
   RoundedStyle({ a: 4 }),
   BackgroundColorStyle(Color.White),
   ColorStyle(Color.Black),

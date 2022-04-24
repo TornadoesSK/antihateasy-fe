@@ -43,7 +43,7 @@ export const theme: Record<Color, string> = {
   [Color.BorderDark20]: "#888888",
   [Color.BorderDark40]: "#666666",
   [Color.White]: "#ffffff",
-  [Color.White10]: "#e6e6e6",
-  [Color.White20]: "#cccccc",
+  [Color.White10]: "#eeeeee",
+  [Color.White20]: "#dddddd",
   [Color.Black]: "#000000",
 };

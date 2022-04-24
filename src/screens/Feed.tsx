@@ -135,7 +135,7 @@ export const Feed = observer(
                   ]}
                   src={`img/person${(message.name.charCodeAt(0) % 5) + 1}.jpg`}
                 />
-                <div css={[ItemStyle({ grow: 1 })]}>
+                <div css={[ItemStyle({ grow: 1, shrink: 1 })]}>
                   <div
                     css={[
                       ContainerStyle({ justifyContent: "space-between" }),
